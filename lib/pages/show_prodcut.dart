@@ -44,6 +44,7 @@ class _ShowProductState extends State<ShowProduct> {
         appBar: AppBar(
           title: Text("Product"),
           centerTitle: true,
+          actions: [IconButton(onPressed: (){ getAllProduct();}, icon: Icon(Icons.refresh)),]
         ),
         body: _isLoading
             ? Center(
@@ -57,7 +58,7 @@ class _ShowProductState extends State<ShowProduct> {
                         crossAxisCount: 2,
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 10,
-                        childAspectRatio: 0.6),
+                        childAspectRatio:0.6),
                     itemCount: listOfProduct.length,
                     itemBuilder: (context, index) {
                       Product product = listOfProduct[index];
@@ -477,5 +478,17 @@ class _ShowProductState extends State<ShowProduct> {
     } catch (error) {
       throw Exception("Failed To create New Product $error");
     }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _productNameTEXController.dispose();
+    _productQuantityTEXController.dispose();
+    _productUnitePriceTEXController.dispose();
+    _productTotalPriceTEXController.dispose();
+    _productImgTEXController.dispose();
+    _productCodeTEXController.dispose();
   }
 }
